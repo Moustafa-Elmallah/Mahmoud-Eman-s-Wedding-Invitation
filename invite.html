@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>دعوة زفاف MAHMOUD & EMAN</title>
+<meta name="description" content="دعوة زفاف  & EMAN — ٢١ سبتمبر ٢٠٢٦ — قاعة ميراج الأوبن اير"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Tajawal:wght@200;300;400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c9a84c;--gold2:#e8c97a;--gold3:#f5e09a;--gold-dim:#7a5e1e;
+  --rose:#d4857a;--rose2:#e8a89f;
+  --bg:#07050e;--text:#f5efe0;--text-dim:rgba(245,239,224,0.55);
+  --glass:rgba(255,255,255,0.03);--gb:rgba(201,168,76,0.15);
+}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:'Tajawal',sans-serif;
+  background:var(--bg);color:var(--text);
+  overflow:hidden;
+}
+
+/* ─── CURTAIN ─── */
+#curtain{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;align-items:stretch;pointer-events:none;
+}
+.c-half{
+  flex:1;
+  background:linear-gradient(150deg,#0d0818,#1a0e2e);
+  transition:transform 1.3s cubic-bezier(.77,0,.175,1) .5s;
+  display:flex;align-items:center;justify-content:center;
+}
+.c-half:first-child{transform-origin:left}
+.c-half:last-child{transform-origin:right}
+#curtain.open .c-half:first-child{transform:translateX(-100%)}
+#curtain.open .c-half:last-child{transform:translateX(100%)}
+.c-logo{
+  font-family:'Playfair Display',serif;font-size:3rem;
+  background:linear-gradient(135deg,var(--gold-dim),var(--gold3),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  opacity:0;animation:cfade .8s .1s ease forwards;
+}
+@keyframes cfade{to{opacity:1}}
+
+/* ─── CANVASES ─── */
+#bg-cv,#pt-cv{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ─── LAYOUT: ONE SCREEN ─── */
+.wrap{
+  position:relative;z-index:1;
+  height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:clamp(10px,2vh,24px) clamp(12px,3vw,32px);
+  gap:clamp(8px,1.5vh,16px);
+}
+
+/* Islamic geo pattern overlay */
+.geo-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpolygon points='50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5' fill='none' stroke='%23c9a84c' stroke-width='0.6'/%3E%3Cpolygon points='50,20 80,35 80,65 50,80 20,65 20,35' fill='none' stroke='%23c9a84c' stroke-width='0.35'/%3E%3Cline x1='5' y1='27.5' x2='20' y2='35' stroke='%23c9a84c' stroke-width='0.35'/%3E%3Cline x1='95' y1='27.5' x2='80' y2='35' stroke='%23c9a84c' stroke-width='0.35'/%3E%3Cline x1='5' y1='72.5' x2='20' y2='65' stroke='%23c9a84c' stroke-width='0.35'/%3E%3Cline x1='95' y1='72.5' x2='80' y2='65' stroke='%23c9a84c' stroke-width='0.35'/%3E%3C/svg%3E");
+  background-size:100px 100px;
+}
+
+/* ─── TOP BADGE ─── */
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(201,168,76,0.22);border-radius:100px;
+  padding:6px 22px;
+  backdrop-filter:blur(12px);background:rgba(201,168,76,0.04);
+  font-size:clamp(0.6rem,1.5vw,0.72rem);letter-spacing:4px;
+  color:rgba(201,168,76,0.75);text-transform:uppercase;
+  opacity:0;animation:up .7s 2.1s ease forwards;
+}
+.badge::before,.badge::after{content:'✦';font-size:0.55rem;color:var(--gold)}
+
+/* ─── BISMILLAH ─── */
+.bism{
+  font-size:clamp(1.3rem,3.5vw,1.9rem);
+  color:var(--gold);
+  text-shadow:0 0 30px rgba(201,168,76,0.35);
+  letter-spacing:2px;
+  opacity:0;animation:up .7s 2s ease forwards;
+}
+
+/* ─── DIVIDER ─── */
+.div-line{
+  display:flex;align-items:center;gap:12px;
+  width:100%;max-width:480px;
+  opacity:0;animation:up .7s 2.3s ease forwards;
+}
+.dl{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.dg{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;box-shadow:0 0 10px rgba(201,168,76,0.55)}
+.dg.rose{background:var(--rose);box-shadow:0 0 10px rgba(212,133,122,0.55)}
+.dl.rose{background:linear-gradient(90deg,transparent,var(--rose),transparent)}
+
+/* ─── INVITE TEXT ─── */
+.inv-txt{
+  font-size:clamp(0.7rem,1.8vw,0.82rem);
+  color:var(--text-dim);letter-spacing:3px;
+  opacity:0;animation:up .7s 2.4s ease forwards;
+}
+
+/* ─── NAMES ─── */
+.names-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(10px,2vw,24px);
+  opacity:0;animation:up .9s 2.6s ease forwards;
+}
+.name-ar{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,9vw,6rem);
+  line-height:1;
+  background:linear-gradient(160deg,var(--gold-dim) 0%,var(--gold) 30%,var(--gold3) 55%,var(--gold) 75%,var(--gold-dim) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s linear infinite,up .9s 2.6s ease forwards;
+  filter:drop-shadow(0 0 35px rgba(201,168,76,0.22));
+}
+.name-and{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1.5rem,4vw,2.8rem);
+  color:rgba(245,239,224,0.25);letter-spacing:4px;
+  flex-shrink:0;
+}
+.name-en{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(2.8rem,9vw,6rem);
+  line-height:1;
+  background:linear-gradient(160deg,var(--rose) 0%,var(--rose2) 40%,#f2b8b0 60%,var(--rose) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s 1s linear infinite,up .9s 2.6s ease forwards;
+  filter:drop-shadow(0 0 35px rgba(212,133,122,0.22));
+}
+@keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
+
+/* ─── DETAIL CARDS ROW ─── */
+.cards-row{
+  display:flex;gap:clamp(8px,1.5vw,16px);
+  width:100%;max-width:640px;
+  opacity:0;animation:up .8s 2.9s ease forwards;
+}
+.detail-card{
+  flex:1;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(201,168,76,0.13);
+  border-radius:16px;padding:clamp(12px,2vh,20px) 14px;
+  text-align:center;position:relative;overflow:hidden;
+  transition:all .4s ease;
+  backdrop-filter:blur(14px);
+}
+.detail-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,0.35),transparent);
+}
+.detail-card:hover{border-color:rgba(201,168,76,0.28);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,0.4),0 0 20px rgba(201,168,76,0.05)}
+.dc-icon{
+  width:38px;height:38px;margin:0 auto 8px;
+  background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.18));
+  border:1px solid rgba(201,168,76,0.18);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+}
+.dc-icon svg{width:20px;height:20px;fill:var(--gold)}
+.dc-label{font-size:clamp(0.55rem,1.2vw,0.65rem);letter-spacing:3px;color:rgba(201,168,76,0.5);text-transform:uppercase;margin-bottom:5px}
+.dc-val{font-size:clamp(0.78rem,1.8vw,0.95rem);font-weight:700;color:var(--text);line-height:1.4}
+.dc-sub{font-size:clamp(0.6rem,1.3vw,0.72rem);color:var(--text-dim);margin-top:3px}
+
+/* ─── COUNTDOWN ─── */
+.cd-row{
+  display:flex;gap:clamp(6px,1vw,12px);
+  opacity:0;animation:up .8s 3.1s ease forwards;
+}
+.cd-box{
+  text-align:center;
+  background:rgba(201,168,76,0.05);
+  border:1px solid rgba(201,168,76,0.13);border-radius:14px;
+  padding:clamp(10px,1.8vh,18px) clamp(12px,2vw,22px);
+  min-width:clamp(60px,10vw,82px);
+  position:relative;transition:all .3s ease;
+}
+.cd-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,0.45),transparent);
+}
+.cd-box:hover{border-color:rgba(201,168,76,0.3);transform:scale(1.06)}
+.cd-dot{
+  position:absolute;top:8px;right:8px;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 7px rgba(201,168,76,0.6);
+  animation:blink 1s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+.cd-num{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1;
+  background:linear-gradient(160deg,var(--gold),var(--gold3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.cd-lbl{font-size:clamp(0.55rem,1.1vw,0.65rem);color:rgba(201,168,76,0.5);letter-spacing:2px;text-transform:uppercase;margin-top:6px;display:block}
+
+/* ─── MAP BTN ─── */
+.map-wrap{opacity:0;animation:up .8s 3.3s ease forwards}
+.map-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,var(--gold-dim),var(--gold) 40%,var(--gold3) 60%,var(--gold) 80%,var(--gold-dim));
+  background-size:200% 100%;
+  color:#08040f;font-family:'Tajawal',sans-serif;font-weight:700;
+  font-size:clamp(0.82rem,2vw,1rem);
+  padding:clamp(10px,1.8vh,15px) clamp(20px,4vw,36px);
+  border-radius:100px;text-decoration:none;
+  transition:all .45s ease;
+  box-shadow:0 4px 28px rgba(201,168,76,0.22),0 0 0 1px rgba(201,168,76,0.08);
+  letter-spacing:.5px;
+}
+.map-btn:hover{
+  background-position:right center;
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 10px 44px rgba(201,168,76,0.38),0 0 0 1px rgba(201,168,76,0.18);
+}
+.map-btn svg{width:18px;height:18px;fill:#08040f;flex-shrink:0}
+
+/* ─── FOOTER LINE ─── */
+.foot{
+  font-size:clamp(0.6rem,1.3vw,0.72rem);
+  color:rgba(201,168,76,0.28);letter-spacing:3px;
+  opacity:0;animation:up .7s 3.5s ease forwards;
+}
+
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── RESPONSIVE TWEAK ─── */
+@media(max-height:640px){
+  .bism{display:none}
+  .inv-txt{display:none}
+  .foot{display:none}
+}
+@media(max-width:460px){
+  .names-row{gap:6px}
+  .name-and{font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- CURTAIN -->
+<div id="curtain">
+  <div class="c-half"><div class="c-logo">💍</div></div>
+  <div class="c-half"></div>
+</div>
+
+<!-- BACKGROUNDS -->
+<canvas id="bg-cv"></canvas>
+<canvas id="pt-cv"></canvas>
+<div class="geo-bg"></div>
+
+<!-- SINGLE PAGE LAYOUT -->
+<div class="wrap">
+
+  <!-- Badge -->
+  <div class="badge">Wedding Invitation — دعوة زفاف</div>
+
+  <!-- Bismillah -->
+  <div class="bism">﷽</div>
+
+  <!-- Divider -->
+  <div class="div-line">
+    <div class="dl"></div><div class="dg"></div><div class="dl"></div>
+  </div>
+
+  <!-- Invite text -->
+  <p class="inv-txt">يسعدنا أن ندعوكم لمشاركتنا فرحة زواج</p>
+
+  <!-- NAMES -->
+  <div class="names-row">
+    <span class="name-ar">Mahmoud</span>
+    <span class="name-and">— &amp; —</span>
+    <span class="name-en">EMAN</span>
+  </div>
+
+  <!-- Rose divider -->
+  <div class="div-line" style="animation-delay:2.8s">
+    <div class="dl rose"></div><div class="dg rose"></div><div class="dl rose"></div>
+  </div>
+
+  <!-- DATE + VENUE CARDS -->
+  <div class="cards-row">
+    <div class="detail-card">
+      <div class="dc-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+      </div>
+      <p class="dc-label">التاريخ · Date</p>
+      <p class="dc-val">الإثنين ٢١ سبتمبر ٢٠٢٦</p>
+      <p class="dc-sub">Monday, 21 Sep 2026</p>
+    </div>
+    <div class="detail-card">
+      <div class="dc-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+      <p class="dc-label">المكان · Venue</p>
+      <p class="dc-val">قاعة ميراج الأوبن اير</p>
+      <p class="dc-sub">Mirage Open Air Hall</p>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="cd-row">
+    <div class="cd-box"><div class="cd-dot"></div><span class="cd-num" id="d">--</span><span class="cd-lbl">يوم · Day</span></div>
+    <div class="cd-box"><div class="cd-dot"></div><span class="cd-num" id="h">--</span><span class="cd-lbl">ساعة · Hr</span></div>
+    <div class="cd-box"><div class="cd-dot"></div><span class="cd-num" id="m">--</span><span class="cd-lbl">دقيقة · Min</span></div>
+    <div class="cd-box"><div class="cd-dot"></div><span class="cd-num" id="s">--</span><span class="cd-lbl">ثانية · Sec</span></div>
+  </div>
+
+  <!-- MAP BUTTON -->
+  <div class="map-wrap">
+    <a href="https://maps.google.com/maps/place//data=!4m2!3m1!1s0x14f7ea6f54696969:0xc3c01f5f6bcc0b63?entry=s&sa=X&ved=2ahUKEwiw36vLprqWAxW62QIHHcfEKKwQ4kB6BAgWEAA&hl=en"
+      target="_blank" rel="noopener noreferrer" class="map-btn" id="map-link">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      📍 افتح الموقع على الخريطة
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <p class="foot">يتشرف أهل العريس والعروسة بدعوتكم · MAHMOUD &amp; EMAN · ٢١·٩·٢٠٢٦ 💍</p>
+
+</div>
+
+<script>
+// ── CURTAIN ──
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('curtain').classList.add('open'),350);
+  setTimeout(()=>document.getElementById('curtain').style.display='none',2500);
+});
+
+// ── STARFIELD + SPARKS ──
+(()=>{
+  const cv=document.getElementById('bg-cv'),cx=cv.getContext('2d');
+  let W,H;
+  const rsz=()=>{W=cv.width=window.innerWidth;H=cv.height=window.innerHeight};
+  rsz();window.addEventListener('resize',rsz);
+
+  const stars=Array.from({length:200},()=>({
+    x:Math.random(),y:Math.random(),
+    r:Math.random()*1.5+0.2,
+    o:Math.random()*0.45+0.08,
+    ph:Math.random()*Math.PI*2,
+    sp:Math.random()*0.006+0.002
+  }));
+
+  const sparks=Array.from({length:35},mkSp);
+  function mkSp(){
+    return{x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,
+      r:Math.random()*2.2+0.4,life:1,decay:Math.random()*.0025+.001,
+      dx:(Math.random()-.5)*.35,dy:-Math.random()*.45-.08,
+      col:Math.random()<.55?[201,168,76]:[212,133,122]};
+  }
+
+  let t=0;
+  function frame(){
+    t+=.01;cx.clearRect(0,0,W,H);
+    // bg
+    const g=cx.createRadialGradient(W/2,H*.38,0,W/2,H*.38,Math.max(W,H)*.85);
+    g.addColorStop(0,'#12091f');g.addColorStop(.5,'#0d0818');g.addColorStop(1,'#07050e');
+    cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    // stars
+    stars.forEach(s=>{
+      const pulse=Math.sin(t*s.sp*50+s.ph)*.28+.72;
+      cx.beginPath();cx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);
+      cx.fillStyle=`rgba(245,239,224,${s.o*pulse})`;cx.fill();
+    });
+    // sparks
+    sparks.forEach((s,i)=>{
+      s.x+=s.dx;s.y+=s.dy;s.life-=s.decay;
+      if(s.life<=0||s.x<0||s.x>W||s.y<0)sparks[i]=mkSp();
+      const[r,g2,b]=s.col,a=s.life*.65;
+      cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      cx.fillStyle=`rgba(${r},${g2},${b},${a})`;cx.fill();
+      const sg=cx.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r*4);
+      sg.addColorStop(0,`rgba(${r},${g2},${b},0.1)`);sg.addColorStop(1,'rgba(0,0,0,0)');
+      cx.beginPath();cx.arc(s.x,s.y,s.r*4,0,Math.PI*2);cx.fillStyle=sg;cx.fill();
+    });
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+// ── PETALS ──
+(()=>{
+  const cv=document.getElementById('pt-cv'),cx=cv.getContext('2d');
+  let W,H;
+  const rsz=()=>{W=cv.width=window.innerWidth;H=cv.height=window.innerHeight};
+  rsz();window.addEventListener('resize',rsz);
+  const COLS=[[212,133,122],[201,168,76],[240,208,128],[228,168,159],[180,100,90]];
+  const rnd=(a,b)=>a+Math.random()*(b-a);
+  function mkP(){return{x:rnd(0,W),y:rnd(-300,-10),sz:rnd(6,16),vy:rnd(.5,1.7),vx:rnd(-.5,.5),rot:rnd(0,360),rs:rnd(-1.8,1.8),op:rnd(.22,.65),col:COLS[0|Math.random()*COLS.length],wb:rnd(0,Math.PI*2),ws:rnd(.015,.04)}}
+  const pts=Array.from({length:55},()=>{const p=mkP();p.y=rnd(0,H);return p});
+  function frame(){
+    cx.clearRect(0,0,W,H);
+    pts.forEach((p,i)=>{
+      p.wb+=p.ws;p.x+=p.vx+Math.sin(p.wb)*.45;p.y+=p.vy;p.rot+=p.rs;
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot*Math.PI/180);cx.globalAlpha=p.op;
+      const[r,g,b]=p.col;
+      cx.beginPath();
+      cx.moveTo(0,-p.sz);
+      cx.bezierCurveTo(p.sz*.55,-p.sz*.55,p.sz*.55,p.sz*.55,0,p.sz);
+      cx.bezierCurveTo(-p.sz*.55,p.sz*.55,-p.sz*.55,-p.sz*.55,0,-p.sz);
+      const pg=cx.createLinearGradient(0,-p.sz,0,p.sz);
+      pg.addColorStop(0,`rgba(${r},${g},${b},.9)`);
+      pg.addColorStop(.5,`rgba(${Math.min(r+25,255)},${Math.min(g+25,255)},${Math.min(b+25,255)},.7)`);
+      pg.addColorStop(1,`rgba(${r},${g},${b},.4)`);
+      cx.fillStyle=pg;cx.fill();cx.restore();
+      if(p.y>H+30)pts[i]=mkP();
+    });
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+// ── COUNTDOWN ──
+function tick(){
+  const tgt=new Date('2026-09-21T20:00:00'),now=new Date(),diff=tgt-now;
+  if(diff<=0){
+    document.getElementById('d').textContent='🎉';
+    document.getElementById('h').textContent='💍';
+    document.getElementById('m').textContent='🌹';
+    document.getElementById('s').textContent='🎊';
+    return;
+  }
+  const p=n=>String(n).padStart(2,'0');
+  document.getElementById('d').textContent=p(Math.floor(diff/86400000));
+  document.getElementById('h').textContent=p(Math.floor(diff%86400000/3600000));
+  document.getElementById('m').textContent=p(Math.floor(diff%3600000/60000));
+  document.getElementById('s').textContent=p(Math.floor(diff%60000/1000));
+}
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>
